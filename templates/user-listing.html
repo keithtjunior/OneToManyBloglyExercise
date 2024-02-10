@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}User Listing{% endblock %}
+{% block content %}
+    <div class="container text-center">
+        <div class="row">
+            <div class="col">
+                <h1>Users</h1>
+                <div class="list-group">
+                    {% if users %}
+                        {% for user in users %}
+                            <a href="/users/{{user.id}}" class="list-group-item list-group-item-action">{{user.get_full_name()}}</a>
+                        {% endfor %}
+                    {% else %}
+                        <a class="list-group-item list-group-item-action disabled" aria-disabled="true">No Users Available</a>
+                    {% endif %}
+                </div>
+                <a class="btn btn-secondary user-add" href="/users/new" role="button">Add User</a>
+                <a class="btn btn-primary home-link" href="/" role="button">Home</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

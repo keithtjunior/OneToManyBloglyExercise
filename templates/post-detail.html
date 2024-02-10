@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Post Details{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col">
+                <div class="card mb-3 post-card">
+                  <div class="card-body">
+                    <h2 class="card-title">{{post.title}}</h2>
+                    <p class="card-text">{{post.content}}</p>
+                    <small class="text-body-secondary mb-3 post-small">By {{post.users.full_name}} on {{post.created_at.strftime('%a %b %d %Y, %I:%M %p')}}</small>
+                    <a class="btn btn-primary user-edit" href="/posts/{{post.id}}/edit" role="button">Edit</a>
+                    <form class="form-post-delete" action="/posts/{{post.id}}/delete" method="post">
+                      <button type="submit" class="btn btn-danger post-delete">Delete</button>
+                    </form>
+                    <a class="btn btn-outline-secondary user-list" href="/users/{{post.user_id}}" role="button">Cancel</a>
+                  </div>
+                </div>          
+            </div>
+        </div>
+    </div>
+{% endblock %}

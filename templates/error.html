@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Page Not Found{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card text-center error-card">
+                    <div class="card-header">Page Not Found</div>
+                    <div class="card-body">
+                        <h1 class="card-title">Oops!</h1>
+                        <p class="card-text">Looks like that page doesn't exist</p>
+                        <p>Click the button below to return to the home page</p>
+                        <small class="fw-lighter error-info">{{e}}</small>
+                        <a class="btn btn-primary home-link" href="/" role="button">Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

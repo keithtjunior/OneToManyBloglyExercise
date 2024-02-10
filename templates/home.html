@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Blogly | Home{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="mb-4">Blogly Recent Posts</h1>
+                <div class="accordion recent-posts" id="recent-posts">
+                    {% if posts %}
+                        {% for post in posts %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                <button class="accordion-button {{'collapsed' if loop.index > 1 else ''}}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{loop.index}}" aria-expanded="true" aria-controls="collapse{{loop.index}}">
+                                    {{post.title}}
+                                </button>
+                                </h2>
+                                <div id="collapse{{loop.index}}" class="accordion-collapse collapse {{'show' if loop.index == 1 else ''}}" data-bs-parent="#recent-posts">
+                                    <div class="accordion-body">
+                                        <p>{{post.content}}</p>
+                                        <small class="text-body-secondary mb-3 post-small">By {{post.users.full_name}} on {{post.created_at.strftime('%a %b %d %Y, %I:%M %p')}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="card">
+                            <div class="card-body text-center">
+                                No Posts Available
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mt-3 text-center">
+                <a class="btn btn-primary user-list" href="/users" role="button">View Users</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
